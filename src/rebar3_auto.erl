@@ -55,8 +55,22 @@ init(State) ->
                      "A list of apps to boot before starting the "
                      "shell. (E.g. --apps app1,app2,app3) Defaults "
                      "to rebar.config {shell, [{apps, Apps}]} or "
-                     "relx apps if not specified."}]},
-            {short_desc, "Automatically run compile task on change of source file and reload modules."},
+                     "relx apps if not specified."},
+                    {relname, $r, "relname", atom,
+                     "Name of the release to use as a template for the "
+                     "shell session"},
+                    {relvsn, $v, "relvsn", string,
+                     "Version of the release to use for the shell "
+                     "session"},
+                    {start_clean, undefined, "start-clean", boolean,
+                     "Cancel any applications in the 'apps' list "
+                     "or release."},
+                    {env_file, undefined, "env-file", string,
+                     "Path to file of os environment variables to setup "
+                     "before expanding vars in config files."},
+                    {user_drv_args, undefined, "user_drv_args", string,
+                     "Arguments passed to user_drv start function for "
+                     "creating custom shells."}]},
             {desc, ""}
     ]),
     {ok, rebar_state:add_provider(State, Provider)}.
